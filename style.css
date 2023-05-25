@@ -4,21 +4,6 @@
   box-sizing: border-box;
   line-height: 1.5;
 }
-body {
-  background: black;
-  color: white;
-}
-.form {
-  margin-top: 20vh;
-}
-.error {
-  font-style: italic;
-}
-.post-content {
-  background: none;
-  width: 70vw;
-  min-height: 200px;
-  border: none;
-  outline: 0.5px solid white;
-  color: white;
+.posts {
+  display: grid;
 }
