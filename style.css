@@ -7,3 +7,6 @@
 .posts {
   display: grid;
 }
+input {
+  border: none;
+}

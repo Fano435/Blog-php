@@ -90,7 +90,6 @@
             $errorInfo = $requete->errorInfo();
             echo "Erreur lors de l'insertion : " . $errorInfo[2];
         }
-
             }
 ?>
 </html>
