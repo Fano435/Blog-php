@@ -1,21 +1,27 @@
 <?php
-if(!$_POST){
+if (!isset($_POST['postId'])) {
     exit();
-    }
+}
+
 $postId = $_POST['postId'];
 
-$bdd = new PDO("mysql:host=localhost:8889;dbname=blog", "root", "root");
+try {
+    $bdd = new PDO("mysql:host=localhost;dbname=blog", "root", "root");
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$stmt = $bdd->prepare("DELETE FROM post WHERE id = :postId");
-$stmt->bindValue(':postId', $postId);
-$result = $stmt->execute();
+    // Supprimer les entrées de la table post_tag liées au post
+    $deleteTagsQuery = $bdd->prepare("DELETE FROM post_tag WHERE post_id = :postId");
+    $deleteTagsQuery->bindValue(':postId', $postId);
+    $deleteTagsQuery->execute();
 
-$deleteTagsQuery = $bdd->query("DELETE FROM tags
-WHERE id NOT IN (SELECT tag_id FROM post_tag)");
-    
-if ($result) {
+    // Supprimer la ligne de la table post
+    $deletePostQuery = $bdd->prepare("DELETE FROM post WHERE id = :postId");
+    $deletePostQuery->bindValue(':postId', $postId);
+    $deletePostQuery->execute();
+
     echo "Deleted successfully.";
-    header("Location: http://localhost:8888/home.php");
-} else {
-    echo "Failed to delete.";
+    header("Location: http://localhost/Blog-php/Blog-php/home.php");
+    exit();
+} catch (PDOException $e) {
+    echo "Failed to delete: " . $e->getMessage();
 }

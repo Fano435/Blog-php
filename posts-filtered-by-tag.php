@@ -4,7 +4,7 @@ if (!$_POST) {
 }
 
 $selected_tag_id = $_POST['tag'];
-$bdd = new PDO("mysql:host=localhost:8889;dbname=blog", "root", "root");
+$bdd = new PDO("mysql:host=localhost;dbname=blog", "root", "root");
 
 $filter_stmt = $bdd->prepare("SELECT DISTINCT post.*
 FROM post

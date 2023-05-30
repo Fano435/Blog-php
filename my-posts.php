@@ -5,7 +5,7 @@ require("./components/header.php") ?>
 <h1>Mes posts</h1>
 
 <?php
-$bdd = new PDO("mysql:host=localhost:8889;dbname=blog", "root", "root");
+$bdd = new PDO("mysql:host=localhost;dbname=blog", "root", "root");
 $myPostStmt = $bdd->prepare("SELECT * FROM post WHERE user_id = :user_id");
 $myPostStmt->bindValue(':user_id', $_SESSION["user_id"]);
 $myPostStmt->execute();

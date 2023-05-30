@@ -1,6 +1,6 @@
 <?php
 
-$bdd = new PDO("mysql:host=localhost:8889;dbname=blog", "root", "root");
+$bdd = new PDO("mysql:host=localhost;dbname=blog", "root", "root");
 
 if (isset($_POST['update_title'])){
 
@@ -13,7 +13,7 @@ if (isset($_POST['update_title'])){
     $result = $stmt->execute();
         
     if ($result) {
-        header("Location: http://localhost:8888/my-posts.php");
+        header("Location: http://localhost/Blog-php/Blog-php/my-posts.php");
     } else {
         echo "Failed to update title";
     }
@@ -27,7 +27,7 @@ if (isset($_POST['update_title'])){
     $result = $stmt->execute();
         
     if ($result) {
-        header("Location: http://localhost:8888/my-posts.php");
+        header("Location: http://localhost/Blog-php/Blog-php/my-posts.php");
     } else {
         echo "Failed to update title";
     }
